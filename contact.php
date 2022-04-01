@@ -80,10 +80,7 @@
                                     echo '<div class="alert alert-tag" role="alert"> <strong>Error!</strong> We are facing some technical issue and your contact form was not submitted successfully! </div>';
                                 }
                             }   
-                        }
-                        
-                            
-                             
+                        }       
                     }
                 ?>
             </div>
