@@ -105,11 +105,13 @@
                         $sql = "DELETE FROM `user_register` WHERE `user_register`.`UserID` = $id";
 
                         $result = mysqli_query($conn, $sql);
+
+                        /* Check for the contact deletion success */
                         if ($result) {
-                            echo '<div class="alert alert-tag" role="alert"> <strong>Success!</strong> Contact form deleted successfully! </div>';
+                            echo '<div class="alert alert-tag" role="alert"> <strong>Success!</strong> Contact deleted successfully! </div>';
                         }
                         else{
-                            echo '<div class="alert alert-tag" role="alert"> <strong>Error!</strong> Unable to delete contact form! </div>';
+                            echo '<div class="alert alert-tag" role="alert"> <strong>Error!</strong> Unable to delete contact! </div>';
                         }
                     }
                     /**************************************************/
@@ -134,10 +136,10 @@
 
                             /* Check for the form updation success */
                             if ($result) {
-                                echo '<div class="alert alert-tag" role="alert"> <strong>Success!</strong> Contact form updated successfully! </div>';
+                                echo '<div class="alert alert-tag" role="alert"> <strong>Success!</strong> Contact updated successfully! </div>';
                             }
                             else{
-                                echo '<div class="alert alert-tag" role="alert"> <strong>Error!</strong> Unable to update contact form! </div>';
+                                echo '<div class="alert alert-tag" role="alert"> <strong>Error!</strong> Unable to update contact! </div>';
                             }
                         }
                         /**************************************************/
@@ -170,10 +172,10 @@
 
                                     /* Check for the table creation success */
                                     if ($result) {
-                                        echo '<div class="alert alert-tag" role="alert"> <strong>Success!</strong> Contact form submitted successfully! </div>';
+                                        echo '<div class="alert alert-tag" role="alert"> <strong>Success!</strong>New Contact submitted successfully! </div>';
                                     }
                                     else{
-                                        echo '<div class="alert alert-tag" role="alert"> <strong>Error!</strong> We are facing some technical issue and your contact form was not submitted successfully! </div>';
+                                        echo '<div class="alert alert-tag" role="alert"> <strong>Error!</strong> We are facing some technical issue and your contact was not submitted successfully! </div>';
                                     }
                                 }   
                             }   
