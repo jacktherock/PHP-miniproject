@@ -1,10 +1,12 @@
 body {
-    background-color: #AA14F0;
+    /* background-color: #AA14F0; */
+    /* background-color: #EEEEEE; */
     font-family: Arial, Helvetica, sans-serif !important;
 }
 
 h1 {
-    color: #EEEEEE;
+    /* color: #EEEEEE; */
+    color: #AA14F0;
     font-weight: bold;
     letter-spacing: 1px;
     font-family: 'Brush Script MT', cursive;
@@ -29,14 +31,27 @@ h1 {
     border: 0px solid !important;
 }
 
-button {
+.btn-submit {
     border: 2px solid #AA14F0 !important;
     color: #AA14F0 !important;
     font-weight: bold !important;
     letter-spacing: 1px;
 }
 
-button:hover {
+.btn-update {
+    border: 2px solid #AA14F0 !important;
+    color: #AA14F0 !important;
+    font-weight: bold !important;
+    letter-spacing: 1px;
+}
+
+.btn-submit:hover {
+    background-color: #AA14F0 !important;
+    border: 2px solid #AA14F0 !important;
+    color: white !important;
+}
+
+.btn-update:hover {
     background-color: #AA14F0 !important;
     border: 2px solid #AA14F0 !important;
     color: white !important;
@@ -49,4 +64,13 @@ button:hover {
 .alert-error{
     background-color: #C490E4;
     color: #000000;
+}
+thead{
+    background-color: #EEEEEE !important;
+}
+.edit:hover{
+    cursor: pointer;
+}
+.delete:hover{
+    cursor: pointer;
 }
