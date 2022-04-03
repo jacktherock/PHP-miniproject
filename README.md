@@ -28,4 +28,11 @@ git clone https://github.com/jacktherock/PHP-miniProject-ContactForm.git
     2) `Create Table`
     3) `Fill Contact Form`
 
-7) Fill contacts details in contact form.
+7) Fill all contacts details in contact form & submit the form.
+
+8) After submitting contact form user can update & delete that contact field.
+
+<!-- ## Collaborators -->
+<!-- - [Pratik Chopane](https://github.com/prateiku) -->
+
+## Thanks for visiting!
