@@ -9,6 +9,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/2913/2913988.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.5/datatables.min.css" />
@@ -16,6 +17,19 @@
 </head>
 
 <body>
+    
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex" href="/php-projects/PHP-miniProject/index.php">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2913/2913988.png" alt="" width="30" height="29" class="mx-5 d-inline-block my-auto">
+                    <div class="fs-3">
+                        <strong> Contact Form</strong>
+                        <small class="fs-6">using php</small>
+                    </div> 
+                </a>
+            </div>
+        </nav>
+
     <!-- -------------------------------- Update Contact Form Modal --------------------------------------------------------------- -->
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -56,7 +70,7 @@
 
     <div class="container">
         <div class="my-4">
-            <h1 class="text-center">Contact Form</h1>
+            <h2 class="text-center">Contact Form</h2>
         </div>
 
         <div class="row">
@@ -108,7 +122,7 @@
 
                         /* Check for the contact deletion success */
                         if ($result) {
-                            echo '<div class="alert alert-tag" role="alert"> <strong>Success!</strong> Contact deleted successfully! </div>';
+                            echo '<div class="alert alert-tag" style="background-color: #FF6363;" role="alert"> <strong>Success!</strong> Contact deleted successfully! </div>';
                         }
                         else{
                             echo '<div class="alert alert-tag" role="alert"> <strong>Error!</strong> Unable to delete contact! </div>';
@@ -172,7 +186,7 @@
 
                                     /* Check for the table creation success */
                                     if ($result) {
-                                        echo '<div class="alert alert-tag" role="alert"> <strong>Success!</strong>New Contact submitted successfully! </div>';
+                                        echo '<div class="alert alert-tag" role="alert"> <strong>Success!</strong> New Contact submitted successfully! </div>';
                                     }
                                     else{
                                         echo '<div class="alert alert-tag" role="alert"> <strong>Error!</strong> We are facing some technical issue and your contact was not submitted successfully! </div>';
@@ -183,7 +197,7 @@
                     }
                 ?>
                 <!-- ----------------------------------------------------------------------------------------------- -->
-
+                
             </div>
 
             <!-- Display all contacts in database table 'user_register' -->
