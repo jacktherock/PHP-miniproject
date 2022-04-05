@@ -7,65 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/2913/2913988.png" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.5/datatables.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/datatables.min.css" />
     <title>Contact Form Project</title>
 </head>
 
 <body>
     
-        <nav class="navbar navbar-dark bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand d-flex" href="/php-projects/PHP-miniProject/index.php">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2913/2913988.png" alt="" width="30" height="29" class="mx-5 d-inline-block my-auto">
-                    <div class="fs-3">
-                        <strong> Contact Form</strong>
-                        <small class="fs-6">using php</small>
-                    </div> 
-                </a>
-            </div>
-        </nav>
+    <?php  require 'partials/_navbar.php' ?>
 
-    <!-- -------------------------------- Update Contact Form Modal --------------------------------------------------------------- -->
-    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Edit Contact</h5>
-                    <span class="btn-close" data-bs-dismiss="modal" aria-label="Close"></span>
-                </div>
-                <div class="modal-body">
-                    <form action="/php-projects/PHP-miniProject/contact.php" method="post" class="px-4 py-4">
-                        <input type="hidden" name="idEdit" id="idEdit">
-                        <div class="mb-3 d-flex flex-row tag form-group">
-                            <label class="form-label my-auto">First Name</label>
-                            <input type="text" class="form-control" name="firstNameEdit" id="firstNameEdit">
-                        </div>
-                        <div class="mb-3 d-flex flex-row tag form-group">
-                            <label class="form-label my-auto">Last Name</label>
-                            <input type="text" class="form-control" name="lastNameEdit" id="lastNameEdit">
-                        </div>
-                        <div class="mb-3 d-flex flex-row tag form-group">
-                            <label class="form-label my-auto">Email</label>
-                            <input type="email" class="form-control" name="emailEdit" id="emailEdit">
-                        </div>
-                        <div class="mb-3 d-flex flex-row tag form-group">
-                            <label class="form-label my-auto">Age</label>
-                            <input type="number" class="form-control" name="ageEdit" id="ageEdit">
-                        </div>
-                        <div class="text-end">
-                            <button type="submit" class="btn btn-sm btn-update">Update</button>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
+    <!-- -------------------------------- Update Contact Form Modal ------------------------------------ -->
+    <?php require 'partials/_updateForm.php' ?>
     <!-- ----------------------------------------------------------------------------------------------- -->
 
     <div class="container">
@@ -75,32 +30,11 @@
 
         <div class="row">
             <div class="col-5">
-                <!-- -------------------------------- Contact Form  --------------------------------------------------------------- -->
-                <form action="/php-projects/PHP-miniProject/contact.php" method="post"
-                    class="bg-light shadow rounded-3 py-5 px-5">
-                    <div class="mb-3 d-flex flex-row tag form-group">
-                        <label class="form-label my-auto">First Name</label>
-                        <input type="text" class="form-control" name="firstName" id="first">
-                    </div>
-                    <div class="mb-3 d-flex flex-row tag form-group">
-                        <label class="form-label my-auto">Last Name</label>
-                        <input type="text" class="form-control" name="lastName" id="last">
-                    </div>
-                    <div class="mb-3 d-flex flex-row tag form-group">
-                        <label class="form-label my-auto">Email</label>
-                        <input type="email" class="form-control" name="email" id="email">
-                    </div>
-                    <div class="mb-3 d-flex flex-row tag form-group">
-                        <label class="form-label my-auto">Age</label>
-                        <input type="number" class="form-control" name="age" id="age">
-                    </div>
-                    <div class="text-end mt-5">
-                        <button type="submit" class="btn btn-submit col-5">Submit</button>
-                    </div>
-                </form>
+                <!-- -------------------------------- Contact Form  ------------------------------------------------ -->
+                <?php require 'partials/_insertForm.php' ?>
                 <!-- ----------------------------------------------------------------------------------------------- -->
 
-                <!-- ----------------- UPDATE, INSERT, DELETE -------------------------------------------------- -->
+                <!-- ----------------- UPDATE, INSERT, DELETE --------------------------- -->
                 <?php
                     /* Connecting to database */
                     $servername = "localhost";
@@ -260,82 +194,17 @@
     </div>
 
     <!-- Bootstrap js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
+    <script src="js/bootstrap.bundle.min.js"></script>
 
     <!-- jquery -->
-    <script src="jquery.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/index.js"></script>
 
     <!-- datatables js -->
-    <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/dataTables.min.js"></script>
 
-    <!-- datatables js for design -->
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.5/datatables.min.js"></script>
-
-    <script>
-        // Fade Alert script
-        setTimeout(() => {
-            $(".alert-tag").fadeToggle(1000);
-        }, 1500);
-
-        // Submit Button Disabled till all fields are filled
-        $(function () {
-            $('.btn-submit').attr('disabled', true);
-            $('#age').change(function () {
-                if ($('#first').val() != '' && $('#last').val() != '' && $('#email').val() != '' && $(
-                        '#age').val() != '') {
-                    $('.btn').attr('disabled', false);
-                } else {
-                    $('.btn').attr('disabled', true);
-                }
-            });
-        });
-
-        // use of datatables which displays table in pagination format
-        $(document).ready(function () {
-            $('#myTable').DataTable();
-        });
-    </script>
-
-    <script>
-        // Edit Contact Form
-        edits = document.getElementsByClassName('edit');
-        Array.from(edits).forEach((element) => {
-            element.addEventListener('click', (e) => {
-                // console.log("edited", e.target.parentNode.parentNode.parentNode);
-                tr = e.target.parentNode.parentNode.parentNode;
-                fn = tr.getElementsByTagName("td")[0].innerText;
-                ln = tr.getElementsByTagName("td")[1].innerText;
-                el = tr.getElementsByTagName("td")[2].innerText;
-                ag = tr.getElementsByTagName("td")[3].innerText;
-                // console.log(fn, ln, el, ag);
-                firstNameEdit.value = fn;
-                lastNameEdit.value = ln;
-                emailEdit.value = el;
-                ageEdit.value = ag;
-                idEdit.value = e.target.parentNode.id;
-                // console.log(e.target.parentNode.id);
-                $('#editModal').modal('toggle');
-            })
-        })
-
-        // Delete Contact Form
-        deletes = document.getElementsByClassName('delete');
-        Array.from(deletes).forEach((element) => {
-            element.addEventListener('click', (e) => {
-                // console.log("Deleted", e.target.parentNode.parentNode.parentNode);
-                id = e.target.parentNode.id.substr(1, );
-                if (confirm("Are you sure want to Delete contact ?")) {
-                    // console.log("Yes")
-                    window.location = `/php-projects/PHP-miniProject/contact.php?delete=${id}`;
-                } else {
-                    // console.log("No")
-                }
-            })
-        })
-    </script>
-
+    
 </body>
 
 </html>
