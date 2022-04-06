@@ -43,7 +43,7 @@
                 }
                 else{
                     // echo "DB not created successfully because of this error --->". mysqli_error($conn);
-                    echo '<div class="my-5 alert alert-tag shadow text-center" role="alert"> <strong>Error!</strong> Unable to create Database! </div>'. mysqli_error($conn);
+                    echo '<div class="my-5 alert alert-error shadow text-center" role="alert"> <strong>Error!</strong> Unable to create Database! </div>'. mysqli_error($conn);
                 }
             }
         ?>

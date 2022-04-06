@@ -43,7 +43,7 @@
                     echo '<div class="my-5 alert alert-tag shadow text-center" role="alert"> <strong>Success!</strong> Table created successfully! </div>';
                 }
                 else{
-                    echo '<div class="my-5 alert alert-tag shadow text-center" role="alert"> <strong>Error!</strong> Unable to create table! </div>'. mysqli_error($conn);
+                    echo '<div class="my-5 alert alert-error shadow text-center" role="alert"> <strong>Error!</strong> Unable to create table! </div>'. mysqli_error($conn);
                 }
             }
         ?>

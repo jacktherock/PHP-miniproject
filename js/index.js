@@ -1,20 +1,20 @@
 // Fade Alert script
 setTimeout(() => {
-    $(".alert-tag").fadeToggle(1000);
-}, 1500);
+    $(".ms").fadeToggle(1000);
+}, 2000);
 
 // Submit Button Disabled till all fields are filled
-$(function () {
-    $('.btn-submit').attr('disabled', true);
-    $('#age').change(function () {
-        if ($('#first').val() != '' && $('#last').val() != '' && $('#email').val() != '' && $(
-                '#age').val() != '') {
-            $('.btn').attr('disabled', false);
-        } else {
-            $('.btn').attr('disabled', true);
-        }
-    });
-});
+// $(function () {
+//     $('.btn-submit').attr('disabled', true);
+//     $('#age').change(function () {
+//         if ($('#first').val() != '' && $('#last').val() != '' && $('#email').val() != '' && $(
+//                 '#age').val() != '') {
+//             $('.btn').attr('disabled', false);
+//         } else {
+//             $('.btn').attr('disabled', true);
+//         }
+//     });
+// });
 
 // Format datatables
 $(document).ready(function () {

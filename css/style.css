@@ -97,6 +97,7 @@ h2 {
 }
 
 .alert-error {
+    margin-top: 10px;
     background-color: #FF6363;
     color: #000000;
 }

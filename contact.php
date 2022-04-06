@@ -1,51 +1,19 @@
-<!doctype html>
-<html lang="en">
+<?php
+  session_start();
+  if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
+    header("location: login.php");
+    exit;
+  }
+?>
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" type="text/css" href="css/datatables.min.css" />
-    <title>Contact Form Project</title>
-</head>
-
-<body>
-    
-    <?php  require 'partials/_navbar.php' ?>
-
-    <!-- -------------------------------- Update Contact Form Modal ------------------------------------ -->
-    <?php require 'partials/_updateForm.php' ?>
-    <!-- ----------------------------------------------------------------------------------------------- -->
-
-    <div class="container">
-        <div class="my-4">
-            <h2 class="text-center">Contact Form</h2>
-        </div>
-
-        <div class="row">
-            <div class="col-5">
-                <!-- -------------------------------- Contact Form  ------------------------------------------------ -->
-                <?php require 'partials/_insertForm.php' ?>
-                <!-- ----------------------------------------------------------------------------------------------- -->
-
-                <!-- ----------------- UPDATE, INSERT, DELETE --------------------------- -->
-                <?php
+<?php
                     /* Connecting to database */
-                    $servername = "localhost";
-                    $username = "root";
-                    $password = "";
-                    $database = "register_php";
-
-                    /* Create a connection */
-                    $conn = mysqli_connect($servername, $username, $password, $database);
+                    include 'partials/_dbconnect.php';
                     
-                    /*************** Delete Contact Form ***********************************/
+                    $showAlert = false;
+                    $showError = false;
+
+                    /*------------------------ Delete Contact Form ------------------------*/
                     if (isset($_GET['delete'])) {
                         $id = $_GET['delete'];
 
@@ -56,13 +24,13 @@
 
                         /* Check for the contact deletion success */
                         if ($result) {
-                            echo '<div class="alert alert-tag" style="background-color: #FF6363;" role="alert"> <strong>Success!</strong> Contact deleted successfully! </div>';
+                            $showAlert = "Contact deleted successfully! ";
                         }
                         else{
-                            echo '<div class="alert alert-tag" role="alert"> <strong>Error!</strong> Unable to delete contact! </div>';
+                            $showError= " Unable to delete contact! ";
                         }
                     }
-                    /**************************************************/
+                    /*------------------------------------------------------------------------*/
                 
                 /************* if request is POST *************************************/
 
@@ -84,13 +52,13 @@
 
                             /* Check for the form updation success */
                             if ($result) {
-                                echo '<div class="alert alert-tag" role="alert"> <strong>Success!</strong> Contact updated successfully! </div>';
+                                $showAlert = "Contact updated successfully! ";
                             }
                             else{
-                                echo '<div class="alert alert-tag" role="alert"> <strong>Error!</strong> Unable to update contact! </div>';
+                                $showError = "Unable to update contact!";
                             }
                         }
-                        /**************************************************/
+                        /***********************************************************************************************/
 
                         /**************** if id is not given **********************************/
                         else{
@@ -100,11 +68,11 @@
                             $age = $_POST['age'];
                             $email = $_POST['email'];
 
-                             /* if email is not given */
-                            if($email == ""){
-                                echo '<div class="alert alert-tag" role="alert"> <strong>Error!</strong> Please Enter Email ID! </div>';
-                            }
-                            /* if email is given */
+                             /* if fields are not filled */
+                             if ($firstName=="" || $lastName=="" || $age == "" || $email=="") {
+                                $showError =  "Please fill require fields!";
+                              }
+                            /* if fields are filled */
                             else{
                                 /* Die if connection was not successful */
                                 if (!$conn) {
@@ -120,18 +88,60 @@
 
                                     /* Check for the table creation success */
                                     if ($result) {
-                                        echo '<div class="alert alert-tag" role="alert"> <strong>Success!</strong> New Contact submitted successfully! </div>';
+                                        $showAlert="New Contact submitted successfully!";
                                     }
                                     else{
-                                        echo '<div class="alert alert-tag" role="alert"> <strong>Error!</strong> We are facing some technical issue and your contact was not submitted successfully! </div>';
+                                        $showError="We are facing some technical issue and your contact was not submitted successfully!";
                                     }
                                 }   
                             }   
                         }    
                     }
                 ?>
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="css/datatables.min.css" />
+    <title>Contact Form Project - <?php echo $_SESSION['username'] ?></title>
+</head>
+
+<body>
+    
+    <?php require 'partials/_navbar.php' ?>
+
+    <!-- -------------------------------- Update Contact Form Modal ------------------------------------ -->
+    <?php require 'partials/_updateForm.php' ?>
+    <!-- ----------------------------------------------------------------------------------------------- -->
+
+    <div class="container">
+        <div class="my-4">
+            <h2 class="text-center">Contact Form - <small class="text-warning"><?php echo $_SESSION['username'] ?></small> </h2>
+        </div>
+
+        <div class="row">
+            <div class="col-5">
+                <!-- -------------------------------- Contact Form  ------------------------------------------------ -->
+                <?php require 'partials/_insertForm.php' ?>
                 <!-- ----------------------------------------------------------------------------------------------- -->
-                
+                <?php 
+                if($showAlert){
+                    echo '<div class="alert alert-tag ms" role="alert"> <strong>Success!</strong> '.$showAlert.' </div>';
+                }
+                if($showError){
+                    echo '<div class="alert alert-error ms" role="alert"> <strong>Error!</strong> '.$showError.' </div>';
+                }
+                ?>  
             </div>
 
             <!-- Display all contacts in database table 'user_register' -->
