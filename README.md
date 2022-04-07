@@ -32,7 +32,7 @@ git clone https://github.com/jacktherock/PHP-miniProject-ContactForm.git
 
 8) After submitting contact form user can update & delete that contact field.
 
-<!-- ## Collaborators -->
-<!-- - [NAME](https://github.com/USERNAME) -->
+## Collaborators
+- [Pratik Chopane](https://github.com/prateiku)
 
 ## Thanks for visiting!
