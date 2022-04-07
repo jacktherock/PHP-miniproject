@@ -18,7 +18,7 @@
                         $id = $_GET['delete'];
 
                 // sql query for DELETE 
-                        $sql = "DELETE FROM `user_register` WHERE `user_register`.`UserID` = $id";
+                        $sql = "DELETE FROM `user_info` WHERE `user_info`.`id` = $id";
 
                         $result = mysqli_query($conn, $sql);
 
@@ -37,16 +37,16 @@
                     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                         /**************** if id is given only then Edit Contact Form **********************************/
-                        if(isset($_POST['idEdit'])){
-                            $id = $_POST['idEdit'];
-
-                            $firstName = $_POST['firstNameEdit'];
-                            $lastName = $_POST['lastNameEdit'];
+                        if(isset($_COOKIE['user_id'])){
+                            $id = $_COOKIE['user_id'];
+                            $first_name = $_POST['first_nameEdit'];
+                            echo $id;
+                            $last_name = $_POST['last_nameEdit'];
                             $age = $_POST['ageEdit'];
                             $email = $_POST['emailEdit'];
 
                 // sql query for UPDATE 
-                            $sql = "UPDATE `user_register` SET `FirstName` = '$firstName' ,  `LastName` = '$lastName' , `Email` = '$email' , `Age` = '$age' WHERE `user_register`.`UserID` = '$id';";
+                            $sql = "UPDATE `user_info` SET `first_name` = '$first_name' ,  `last_name` = '$last_name' , `email` = '$email' , `age` = '$age' WHERE `id` = '$id';";
 
                             $result = mysqli_query($conn, $sql);
 
@@ -63,13 +63,13 @@
                         /**************** if id is not given **********************************/
                         else{
                             /**************** passing the values of inputs **********************************/
-                            $firstName = $_POST['firstName'];
-                            $lastName = $_POST['lastName'];
+                            $first_name = $_POST['first_name'];
+                            $last_name = $_POST['last_name'];
                             $age = $_POST['age'];
                             $email = $_POST['email'];
 
                              /* if fields are not filled */
-                             if ($firstName=="" || $lastName=="" || $age == "" || $email=="") {
+                             if ($first_name=="" || $last_name=="" || $age == "" || $email=="") {
                                 $showError =  "Please fill require fields!";
                               }
                             /* if fields are filled */
@@ -79,10 +79,11 @@
                                     die("Sorry we failed to connect: ". mysqli_connect_error());
                                 }
                                 else {                    
-                                /***************** Insert Data in 'User_register' table ********************/
+                                /***************** Insert Data in 'user_info' table ********************/
 
-                // sql query for INSERT                 
-                                    $sql = "INSERT INTO `user_register` (`UserID`, `FirstName`, `LastName`, `Email`, `Age`) VALUES (NULL, '$firstName', '$lastName', '$email', '$age')";
+                // sql query for INSERT
+                                    $UUID = vsprintf( '%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex(random_bytes(16)), 4) );
+                                    $sql = "INSERT INTO `user_info` (`id`, `first_name`, `last_name`, `email`, `age`) VALUES ('$UUID', '$first_name', '$last_name', '$email', '$age')";
 
                                     $result = mysqli_query($conn, $sql);
 
@@ -144,7 +145,7 @@
                 ?>  
             </div>
 
-            <!-- Display all contacts in database table 'user_register' -->
+            <!-- Display all contacts in database table 'user_info' -->
             <div class="col-7">
 
                 <!------------ Contact Table ------------>
@@ -155,8 +156,8 @@
                                 <th scope='col'>ID</th>
                                 <th scope='col'>First Name</th>
                                 <th scope='col'>Last Name</th>
-                                <th scope='col'>Email</th>
-                                <th scope='col'>Age</th>
+                                <th scope='col'>email</th>
+                                <th scope='col'>age</th>
                                 <th scope='col'>Actions</th>
                             </tr>
                         </thead>
@@ -164,7 +165,7 @@
 
                             <!------------ Display all contacts in table format ------------>
                             <?php
-                                $sql = "SELECT * FROM `user_register`";
+                                $sql = "SELECT * FROM `user_info`";
                                 $result = mysqli_query($conn, $sql);
                                 // $num = mysqli_num_rows($result);
 
@@ -177,13 +178,13 @@
 
                                         echo "<tr>
                                                 <th scope='row'>".$id."</th>
-                                                <td>".$row["FirstName"]."</td>
-                                                <td>".$row["LastName"]."</td>
-                                                <td>".$row["Email"]."</td>
-                                                <td>".$row["Age"]."</td>
+                                                <td>".$row["first_name"]."</td>
+                                                <td>".$row["last_name"]."</td>
+                                                <td>".$row["email"]."</td>
+                                                <td>".$row["age"]."</td>
                                                 <td>
-                                                    <span class='edit text-success' id=".$row["UserID"]."> <i class='bx bxs-edit bx-sm'></i> </span>
-                                                    <span class='delete text-danger' id=d".$row["UserID"]."> <i class='bx bxs-trash bx-sm'></i> </span>
+                                                    <span class='edit text-success' id=".$row["id"]."> <i class='bx bxs-edit bx-sm'></i> </span>
+                                                    <span class='delete text-danger' id=d".$row["id"]."> <i class='bx bxs-trash bx-sm'></i> </span>
                                                 </td>
                                             </tr>";
                                     }

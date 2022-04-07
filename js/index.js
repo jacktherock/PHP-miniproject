@@ -32,8 +32,8 @@ Array.from(edits).forEach((element) => {
         el = tr.getElementsByTagName("td")[2].innerText;
         ag = tr.getElementsByTagName("td")[3].innerText;
         // console.log(fn, ln, el, ag);
-        firstNameEdit.value = fn;
-        lastNameEdit.value = ln;
+        first_nameEdit.value = fn;
+        last_nameEdit.value = ln;
         emailEdit.value = el;
         ageEdit.value = ag;
         idEdit.value = e.target.parentNode.id;
