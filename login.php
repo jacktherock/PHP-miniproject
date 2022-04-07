@@ -2,18 +2,60 @@
   $login = false;
   $loginErr = false;
   $showError = false;
-  if($_SERVER["REQUEST_METHOD"]=="POST"){
+  // function login($username, $password){
+  //   include 'partials/_dbconnect.php';
+  //   $sql = "SELECT * FROM `users` WHERE `username`='$username' AND `password`='$password'";
+  //   $result = mysqli_query($conn, $sql);
+  //   $num = mysqli_num_rows($result);
+  //   $row = mysqli_fetch_array($result);
+  //   if($num==1){
+  //     $login = "Logged In Successfully!";
+  //     $_SESSION['loggedin'] = true;
+  //     $_SESSION['username'] = $username;
+  //     header("location: contact.php"); //redirect to page
+  //   }
+  //   else{
+  //     $loginErr = "Invalid Credentials!";
+  //   }
+  // }
+  if (isset($_COOKIE['user_id'])){
     include 'partials/_dbconnect.php';
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-
-    if ($username=="" || $password=="") {
-      $showError =  "Please fill require fields!";
+    $id = $_COOKIE['user_id'];
+    $sql = "SELECT * FROM `users` WHERE `id`='$id'";
+    $result = mysqli_query($conn, $sql);
+    $num = mysqli_num_rows($result);
+    $row = mysqli_fetch_array($result);
+    $user_name = $row['username'];
+    $pass = $row['password'];
+    session_start();
+    echo $user_name;
+    $sql = "SELECT * FROM `users` WHERE `username`='$user_name' AND `password`='$pass'";
+    $result = mysqli_query($conn, $sql);
+    $num = mysqli_num_rows($result);
+    $row = mysqli_fetch_array($result);
+    if($num==1){
+      $login = "Logged In Successfully!";
+      $_SESSION['loggedin'] = true;
+      $_SESSION['username'] = $use_rname;
+      header("location: contact.php"); //redirect to page
     }
     else{
-        $sql = "SELECT * FROM `users` WHERE `username`='$username' AND `password`='$password'";
-        $result = mysqli_query($conn, $sql);
-        $num = mysqli_num_rows($result);
+      $loginErr = "Invalid Credentials!";
+    }
+  } 
+  elseif ($_SERVER["REQUEST_METHOD"]=="POST") {
+      include 'partials/_dbconnect.php';
+      $username = $_POST["username"];
+      $password = $_POST["password"];
+      $sql = "SELECT * FROM `users` WHERE `username`='$username' AND `password`='$password'";
+      $result = mysqli_query($conn, $sql);
+      $num = mysqli_num_rows($result);
+      $row = mysqli_fetch_array($result);
+      setcookie('user_id', $row['id'],'/');
+      if ($username=="" || $password=="") {
+        $showError =  "Please fill require fields!";
+      }
+      else {
         if($num==1){
           $login = "Logged In Successfully!";
           session_start();
@@ -24,7 +66,7 @@
         else{
           $loginErr = "Invalid Credentials!";
         }
-    }
+      }
   }
 ?>
 
@@ -43,7 +85,6 @@
   </head>
   <body>
       <?php require 'partials/_navbar.php' ?>
-      
 
       <div class="container">
       <h1 class="text-center fw-bold my-5">Login</h1>

@@ -35,12 +35,22 @@
             else {
                 
                 /* Create table in 'register_php' db */
-                $sql = "CREATE TABLE User_register ( UserID INT NOT NULL AUTO_INCREMENT, FirstName VARCHAR(255) NOT NULL, LastName VARCHAR(255) NOT NULL, Email VARCHAR(255) NOT NULL, Age INT NOT NULL, PRIMARY KEY(UserID))";
+                $sql = "CREATE TABLE `register_php`.`user_info` ( `id` CHAR(255) NOT NULL , `phone_no` CHAR(255) NOT NULL , `first_name` CHAR(255) NOT NULL , `last_name` CHAR(255) NULL , `age` INT(3) NOT NULL , `note` TEXT NULL , `email` CHAR(255) NOT NULL , `created_by` CHAR(255) NOT NULL , `created_at` INT NOT NULL DEFAULT CURRENT_TIMESTAMP )";
                 $result = mysqli_query($conn, $sql);
 
                 /* Check for the table creation success */
                 if ($result) {
-                    echo '<div class="my-5 alert alert-tag shadow text-center" role="alert"> <strong>Success!</strong> Table created successfully! </div>';
+                    echo '<div class="my-5 alert alert-tag shadow text-center" role="alert"> <strong>Success!</strong> user_info table created successfully! </div>';
+                }
+                else{
+                    echo '<div class="my-5 alert alert-error shadow text-center" role="alert"> <strong>Error!</strong> Unable to create table! </div>'. mysqli_error($conn);
+                }
+                $sql2 = "CREATE TABLE `register_php`.`users` ( `id` CHAR(255) NOT NULL , `username` CHAR(255) NOT NULL , `password` CHAR(255) NOT NULL , `created_at` CHAR(255) NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`), UNIQUE `username` (`username`))";
+                $result2 = mysqli_query($conn, $sql2);
+
+                /* Check for the table creation success */
+                if ($result2) {
+                    echo '<div class="my-5 alert alert-tag shadow text-center" role="alert"> <strong>Success!</strong> users table created successfully! </div>';
                 }
                 else{
                     echo '<div class="my-5 alert alert-error shadow text-center" role="alert"> <strong>Error!</strong> Unable to create table! </div>'. mysqli_error($conn);

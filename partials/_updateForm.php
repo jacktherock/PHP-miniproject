@@ -10,11 +10,11 @@
                     <input type="hidden" name="idEdit" id="idEdit">
                     <div class="mb-3 d-flex flex-row tag form-group">
                         <label class="form-label my-auto">First Name</label>
-                        <input type="text" class="form-control" name="firstNameEdit" id="firstNameEdit">
+                        <input type="text" class="form-control" name="first_nameEdit" id="first_nameEdit">
                     </div>
                     <div class="mb-3 d-flex flex-row tag form-group">
                         <label class="form-label my-auto">Last Name</label>
-                        <input type="text" class="form-control" name="lastNameEdit" id="lastNameEdit">
+                        <input type="text" class="form-control" name="last_nameEdit" id="last_nameEdit">
                     </div>
                     <div class="mb-3 d-flex flex-row tag form-group">
                         <label class="form-label my-auto">Email</label>

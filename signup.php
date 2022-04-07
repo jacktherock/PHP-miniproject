@@ -21,9 +21,13 @@
       if ($username=="" || $password=="" || $cpassword == "") {
         $showError =  "Please fill require fields!";
       }
+      elseif (strlen($password) != 8){
+        $showError = "Password should be of minimum 8 characters";
+      }
       else{
         if(($password == $cpassword)){
-          $sql = "INSERT INTO `users` (`sno`, `username`, `password`, `dt`) VALUES (NULL,'$username', '$password', current_timestamp())";
+          $UUID = vsprintf( '%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex(random_bytes(16)), 4) );
+          $sql = "INSERT INTO `users` (`id`, `username`, `password`) VALUES ('$UUID','$username', '$password')";
           $result = mysqli_query($conn, $sql);
           if($result){
             $showAlert = "Your account is now created & You can login";
