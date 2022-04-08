@@ -15,47 +15,46 @@
 
 <body>
 
-    <?php  require 'partials/_navbar.php' ?>
+    <?php require 'partials/_navbar.php' ?>
 
     <div class="container">
         <?php
-            /* Connecting to database */
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $database = "register_php";
+        /* Connecting to database */
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $database = "register_php";
 
-            /* Create a connection */
-            $conn = mysqli_connect($servername, $username, $password, $database);
+        /* Create a connection */
+        $conn = mysqli_connect($servername, $username, $password, $database);
 
-            /* Die if connection was not successful */
-            if (!$conn) {
-                die("Sorry we failed to connect: ". mysqli_connect_error());
+        /* Die if connection was not successful */
+        if (!$conn) {
+            die("Sorry we failed to connect: " . mysqli_connect_error());
+        } else {
+
+            /* Create 'user_info' table in 'register_php' db */
+            $sql = "CREATE TABLE `register_php`.`user_info` ( `id` VARCHAR(25) NOT NULL , `phone_no` VARCHAR(11) NOT NULL , `first_name` VARCHAR(23) NOT NULL , `last_name` VARCHAR(23) NOT NULL , `age` INT(3) NOT NULL , `note` TEXT NULL , `email` VARCHAR(23) NOT NULL , `created_by` VARCHAR(25) NOT NULL , `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP )";
+            $result = mysqli_query($conn, $sql);
+
+            /* Check for the table creation success */
+            if ($result) {
+                echo '<div class="my-5 alert alert-tag shadow text-center" role="alert"> <strong>Success!</strong> user_info table created successfully! </div>';
+            } else {
+                echo '<div class="my-5 alert alert-error shadow text-center" role="alert"> <strong>Error!</strong> Unable to create table! </div>' . mysqli_error($conn);
             }
-            else {
-                
-                /* Create table in 'register_php' db */
-                $sql = "CREATE TABLE `register_php`.`user_info` ( `id` CHAR(255) NOT NULL , `phone_no` CHAR(255) NOT NULL , `first_name` CHAR(255) NOT NULL , `last_name` CHAR(255) NULL , `age` INT(3) NOT NULL , `note` TEXT NULL , `email` CHAR(255) NOT NULL , `created_by` CHAR(255) NOT NULL , `created_at` INT NOT NULL DEFAULT CURRENT_TIMESTAMP )";
-                $result = mysqli_query($conn, $sql);
 
-                /* Check for the table creation success */
-                if ($result) {
-                    echo '<div class="my-5 alert alert-tag shadow text-center" role="alert"> <strong>Success!</strong> user_info table created successfully! </div>';
-                }
-                else{
-                    echo '<div class="my-5 alert alert-error shadow text-center" role="alert"> <strong>Error!</strong> Unable to create table! </div>'. mysqli_error($conn);
-                }
-                $sql2 = "CREATE TABLE `register_php`.`users` ( `id` CHAR(255) NOT NULL , `username` CHAR(255) NOT NULL , `password` CHAR(255) NOT NULL , `created_at` CHAR(255) NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`), UNIQUE `username` (`username`))";
-                $result2 = mysqli_query($conn, $sql2);
+            /* Create 'users' table in 'register_php' db */
+            $sql2 = "CREATE TABLE `register_php`.`users` ( `id` VARCHAR(25) NOT NULL , `username` VARCHAR(23) NOT NULL ,  `password` VARCHAR(23) NOT NULL ,  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (`id`), UNIQUE `username` (`username`))";
+            $result2 = mysqli_query($conn, $sql2);
 
-                /* Check for the table creation success */
-                if ($result2) {
-                    echo '<div class="my-5 alert alert-tag shadow text-center" role="alert"> <strong>Success!</strong> users table created successfully! </div>';
-                }
-                else{
-                    echo '<div class="my-5 alert alert-error shadow text-center" role="alert"> <strong>Error!</strong> Unable to create table! </div>'. mysqli_error($conn);
-                }
+            /* Check for the table creation success */
+            if ($result2) {
+                echo '<div class="my-5 alert alert-tag shadow text-center" role="alert"> <strong>Success!</strong> users table created successfully! </div>';
+            } else {
+                echo '<div class="my-5 alert alert-error shadow text-center" role="alert"> <strong>Error!</strong> Unable to create table! </div>' . mysqli_error($conn);
             }
+        }
         ?>
 
         <div>

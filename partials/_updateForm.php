@@ -9,6 +9,10 @@
                 <form action="/php-projects/PHP-miniProject/contact.php" method="post" class="px-4 py-4">
                     <input type="hidden" name="idEdit" id="idEdit">
                     <div class="mb-3 d-flex flex-row tag form-group">
+                        <label class="form-label my-auto">Mobile Number</label>
+                        <input type="number" class="form-control" name="phone_noEdit" id="phone_noEdit">
+                    </div>
+                    <div class="mb-3 d-flex flex-row tag form-group">
                         <label class="form-label my-auto">First Name</label>
                         <input type="text" class="form-control" name="first_nameEdit" id="first_nameEdit">
                     </div>
@@ -17,12 +21,16 @@
                         <input type="text" class="form-control" name="last_nameEdit" id="last_nameEdit">
                     </div>
                     <div class="mb-3 d-flex flex-row tag form-group">
-                        <label class="form-label my-auto">Email</label>
-                        <input type="email" class="form-control" name="emailEdit" id="emailEdit">
-                    </div>
-                    <div class="mb-3 d-flex flex-row tag form-group">
                         <label class="form-label my-auto">Age</label>
                         <input type="number" class="form-control" name="ageEdit" id="ageEdit">
+                    </div>
+                    <div class="mb-3 d-flex flex-row tag form-group">
+                        <label class="form-label my-auto">Note</label>
+                        <input type="text" class="form-control" name="noteEdit" id="noteEdit">
+                    </div>
+                    <div class="mb-3 d-flex flex-row tag form-group">
+                        <label class="form-label my-auto">Email</label>
+                        <input type="email" class="form-control" name="emailEdit" id="emailEdit">
                     </div>
                     <div class="text-end">
                         <button type="submit" class="btn btn-sm btn-update">Update</button>

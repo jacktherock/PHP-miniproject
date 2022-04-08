@@ -16,6 +16,16 @@ setTimeout(() => {
 //     });
 // });
 
+// Show password
+function myFunction() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+
 // Format datatables
 $(document).ready(function () {
     $('#myTable').DataTable();
@@ -27,15 +37,20 @@ Array.from(edits).forEach((element) => {
     element.addEventListener('click', (e) => {
         // console.log("edited", e.target.parentNode.parentNode.parentNode);
         tr = e.target.parentNode.parentNode.parentNode;
-        fn = tr.getElementsByTagName("td")[0].innerText;
-        ln = tr.getElementsByTagName("td")[1].innerText;
-        el = tr.getElementsByTagName("td")[2].innerText;
+        ph = tr.getElementsByTagName("td")[0].innerText;
+        fn = tr.getElementsByTagName("td")[1].innerText;
+        ln = tr.getElementsByTagName("td")[2].innerText;
         ag = tr.getElementsByTagName("td")[3].innerText;
+        nt = tr.getElementsByTagName("td")[4].innerText;
+        el = tr.getElementsByTagName("td")[5].innerText;
+        ct = tr.getElementsByTagName("td")[6].innerText;
         // console.log(fn, ln, el, ag);
+        phone_noEdit.value = ph;
         first_nameEdit.value = fn;
         last_nameEdit.value = ln;
-        emailEdit.value = el;
         ageEdit.value = ag;
+        noteEdit.value = nt;
+        emailEdit.value = el;
         idEdit.value = e.target.parentNode.id;
         // console.log(e.target.parentNode.id);
         $('#editModal').modal('toggle');

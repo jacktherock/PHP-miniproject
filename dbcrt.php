@@ -15,37 +15,35 @@
 
 <body>
 
-    <?php  require 'partials/_navbar.php' ?>
-    
+    <?php require 'partials/_navbar.php' ?>
+
     <div class="container">
         <?php
-            /* Connecting to database */
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
+        /* Connecting to database */
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
 
-            /* Create a connection */
-            $conn = mysqli_connect($servername, $username, $password);
+        /* Create a connection */
+        $conn = mysqli_connect($servername, $username, $password);
 
-            /* Die if connection was not successful */
-            if (!$conn) {
-                die("Sorry we failed to connect: ". mysqli_connect_error());
+        /* Die if connection was not successful */
+        if (!$conn) {
+            die("Sorry we failed to connect: " . mysqli_connect_error());
+        } else {
+
+            /* Create a database */
+            $sql = "CREATE DATABASE register_php";
+            $result = mysqli_query($conn, $sql);
+
+            /* Check for the database creation success */
+            if ($result) {
+                echo '<div class="my-5 alert alert-tag shadow text-center" role="alert"> <strong>Success!</strong> Database created successfully! </div>';
+            } else {
+                // echo "DB not created successfully because of this error --->". mysqli_error($conn);
+                echo '<div class="my-5 alert alert-error shadow text-center" role="alert"> <strong>Error!</strong> Unable to create Database! </div>' . mysqli_error($conn);
             }
-            else {
-                
-                /* Create a database */
-                $sql = "CREATE DATABASE register_php";
-                $result = mysqli_query($conn, $sql);
-
-                /* Check for the database creation success */
-                if ($result) {
-                    echo '<div class="my-5 alert alert-tag shadow text-center" role="alert"> <strong>Success!</strong> Database created successfully! </div>';
-                }
-                else{
-                    // echo "DB not created successfully because of this error --->". mysqli_error($conn);
-                    echo '<div class="my-5 alert alert-error shadow text-center" role="alert"> <strong>Error!</strong> Unable to create Database! </div>'. mysqli_error($conn);
-                }
-            }
+        }
         ?>
 
         <div>
