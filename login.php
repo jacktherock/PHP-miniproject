@@ -62,6 +62,7 @@ if (isset($_COOKIE['user_id'])) {
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
   <link rel="stylesheet" href="css/style.css">
 
   <title>Login</title>

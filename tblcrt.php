@@ -34,7 +34,7 @@
         } else {
 
             /* Create 'user_info' table in 'register_php' db */
-            $sql = "CREATE TABLE `register_php`.`user_info` ( `id` VARCHAR(25) NOT NULL , `phone_no` VARCHAR(11) NOT NULL , `first_name` VARCHAR(23) NOT NULL , `last_name` VARCHAR(23) NOT NULL , `age` INT(3) NOT NULL , `note` TEXT NULL , `email` VARCHAR(23) NOT NULL , `created_by` VARCHAR(25) NOT NULL , `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP )";
+            $sql = "CREATE TABLE `register_php`.`user_info` ( `id` VARCHAR(51) NOT NULL , `phone_no` VARCHAR(14) NOT NULL , `first_name` VARCHAR(23) NOT NULL , `last_name` VARCHAR(23) NOT NULL , `age` INT(3) NOT NULL , `note` TEXT NULL , `email` VARCHAR(151) NOT NULL , `created_by` VARCHAR(51) NOT NULL , `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP )";
             $result = mysqli_query($conn, $sql);
 
             /* Check for the table creation success */
@@ -45,7 +45,7 @@
             }
 
             /* Create 'users' table in 'register_php' db */
-            $sql2 = "CREATE TABLE `register_php`.`users` ( `id` VARCHAR(25) NOT NULL , `username` VARCHAR(23) NOT NULL ,  `password` VARCHAR(23) NOT NULL ,  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (`id`), UNIQUE `username` (`username`))";
+            $sql2 = "CREATE TABLE `register_php`.`users` ( `id` VARCHAR(51) NOT NULL , `username` VARCHAR(23) NOT NULL ,  `password` VARCHAR(23) NOT NULL ,  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (`id`), UNIQUE `username` (`username`))";
             $result2 = mysqli_query($conn, $sql2);
 
             /* Check for the table creation success */

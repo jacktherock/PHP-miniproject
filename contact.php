@@ -168,6 +168,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <th scope='col'>Note</th>
                                 <th scope='col'>Email</th>
                                 <th scope='col'>Created At</th>
+
                                 <th scope='col'>Actions</th>
                             </tr>
                         </thead>
@@ -175,33 +176,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                             <!------------ Display all contacts in table format ------------>
                             <?php
+                            $idc = $_COOKIE['user_id'];
+                            // echo $idc;
                             $sql = "SELECT * FROM `user_info`";
+                            // $sql = "SELECT * FROM `user_info` WHERE `id` = '$idc' ";
+                            // echo $sql;
                             $result = mysqli_query($conn, $sql);
-                            // $num = mysqli_num_rows($result);
+                            $num = mysqli_num_rows($result);
 
-                            // if ($num>0) {
-                            /************* Output data of each row using while loop ***************/
-                            $id = 0;
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                // echo var_dump($row);
-                                $id = $id + 1;
+                            if ($num > 0) {
+                                /************* Output data of each row using while loop ***************/
+                                $id = 0;
+                                while ($row = mysqli_fetch_array($result)) {
+                                    // echo var_dump($row);
+                                    $id = $id + 1;
 
-                                echo "<tr>
-                                                <th scope='row'>" . $id . "</th>
-                                                <td>" . $row["phone_no"] . "</td>
-                                                <td>" . $row["first_name"] . "</td>
-                                                <td>" . $row["last_name"] . "</td>
-                                                <td>" . $row["age"] . "</td>
-                                                <td>" . $row["note"] . "</td>
-                                                <td>" . $row["email"] . "</td>
-                                                <td>" . $row["created_at"] . "</td>
-                                                <td>
-                                                    <span class='edit text-success' id=" . $row["id"] . "> <i class='bx bxs-edit bx-sm'></i> </span>
-                                                    <span class='delete text-danger' id=d" . $row["id"] . "> <i class='bx bxs-trash bx-sm'></i> </span>
+                                    echo "<tr>
+                                            <th scope='row'>" . $id . "</th>
+                                            <td>" . $row["phone_no"] . "</td>
+                                            <td>" . $row["first_name"] . "</td>
+                                            <td>" . $row["last_name"] . "</td>
+                                            <td>" . $row["age"] . "</td>
+                                            <td>" . $row["note"] . "</td>
+                                            <td>" . $row["email"] . "</td>
+                                            <td>" . $row["created_at"] . "</td>
+                                            <td>
+                                                <span class='edit text-success' id=" . $row["id"] . "> <i class='bx bxs-edit bx-sm'></i> </span>
+                                                <span class='delete text-danger' id=d" . $row["id"] . "> <i class='bx bxs-trash bx-sm'></i> </span>
                                                 </td>
                                             </tr>";
+                                }
                             }
-                            // }
                             // else{
                             //     echo '<div class="alert alert-error fw-bold text-center" role="alert"> Table content is empty! </div>';
                             // }
