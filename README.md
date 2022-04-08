@@ -10,7 +10,7 @@ https://www.apachefriends.org/download.html
 
 2) Create folder `php-projects` on location
 ```
-    C:\xampp\htdocs\
+C:\xampp\htdocs\
 ```
 
 3) Clone repo on this location `C:\xampp\htdocs\php-projects\`
@@ -25,15 +25,15 @@ git clone https://github.com/jacktherock/PHP-miniProject-ContactForm.git
 
 6) Then at first you have to create database `register_php`, 
 ```
-    CREATE DATABASE register_php
+CREATE DATABASE register_php
 ```
 then create two tables in database `users` and `user_info`
 ```
-    CREATE TABLE `register_php`.`users` ( `id` VARCHAR(51) NOT NULL , `username` VARCHAR(23) NOT NULL ,  `password` VARCHAR(23) NOT NULL ,  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (`id`), UNIQUE `username` (`username`))
+CREATE TABLE `register_php`.`users` ( `id` VARCHAR(51) NOT NULL , `username` VARCHAR(23) NOT NULL ,  `password` VARCHAR(23) NOT NULL ,  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (`id`), UNIQUE `username` (`username`))
 ```
 
 ```
-    CREATE TABLE `register_php`.`user_info` ( `id` VARCHAR(51) NOT NULL , `phone_no` VARCHAR(14) NOT NULL , `first_name` VARCHAR(23) NOT NULL , `last_name` VARCHAR(23) NOT NULL , `age` INT(3) NOT NULL , `note` TEXT NULL , `email` VARCHAR(151) NOT NULL , `created_by` VARCHAR(51) NOT NULL , `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP )
+CREATE TABLE `register_php`.`user_info` ( `id` VARCHAR(51) NOT NULL , `phone_no` VARCHAR(14) NOT NULL , `first_name` VARCHAR(23) NOT NULL , `last_name` VARCHAR(23) NOT NULL , `age` INT(3) NOT NULL , `note` TEXT NULL , `email` VARCHAR(151) NOT NULL , `created_by` VARCHAR(51) NOT NULL , `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP )
 ```
 
 7) After creating database and tables, create new account and login from created account. Then only user can fill contact form.
