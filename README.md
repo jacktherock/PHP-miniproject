@@ -16,7 +16,7 @@ C:\xampp\htdocs\
 3) Clone repo on this location `C:\xampp\htdocs\php-projects\`
 
 ```
-git clone https://github.com/jacktherock/PHP-miniProject-ContactForm.git
+git clone https://github.com/jacktherock/PHP-miniproject.git
 ```
 
 4) In the XAMPP application start `Apache` & `MySQL` server

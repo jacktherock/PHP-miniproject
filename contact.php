@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $age = $_POST['age'];
         $note = $_POST['note'];
         $email = $_POST['email'];
-        $created_by = $_COOKIE['user_id'];
+        // $created_by = $_COOKIE['user_id'];
 
         /* if fields are not filled */
         if ($first_name == "" || $last_name == "" || $age == "" || $email == "") {
@@ -86,7 +86,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // sql query for INSERT
                 $UUID = vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex(random_bytes(16)), 4));
                 // $sql = "INSERT INTO `user_info` (`id`, `first_name`, `last_name`, `email`, `age`) VALUES ('$UUID', '$first_name', '$last_name', '$email', '$age')";
-                $sql = "INSERT INTO `user_info` (`id`, `phone_no`, `first_name`, `last_name`, `age`, `note`, `email`, `created_by`, `created_at`) VALUES ('$UUID', '$phone_no', '$first_name', '$last_name', '$age', '$note', '$email', '$created_by', current_timestamp())";
+                // $sql = "INSERT INTO `user_info` (`id`, `phone_no`, `first_name`, `last_name`, `age`, `note`, `email`, `created_by`, `created_at`) VALUES ('$UUID', '$phone_no', '$first_name', '$last_name', '$age', '$note', '$email', '$created_by', current_timestamp())";
+                $sql = "INSERT INTO `user_info` (`id`, `phone_no`, `first_name`, `last_name`, `age`, `note`, `email`, `created_at`) VALUES ('$UUID', '$phone_no', '$first_name', '$last_name', '$age', '$note', '$email', current_timestamp())";
 
 
                 $result = mysqli_query($conn, $sql);
