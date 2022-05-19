@@ -31,6 +31,7 @@ if (isset($_COOKIE['user_id'])) {
   include 'partials/_dbconnect.php';
   $username = $_POST["username"];
   $password = $_POST["password"];
+  $password = md5($password);
   $sql = "SELECT * FROM `users` WHERE `username`='$username' AND `password`='$password'";
   $result = mysqli_query($conn, $sql);
   $num = mysqli_num_rows($result);

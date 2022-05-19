@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $age = $_POST['age'];
         $note = $_POST['note'];
         $email = $_POST['email'];
-        // $created_by = $_COOKIE['user_id'];
+        $created_by = $_COOKIE['user_id'];
 
         /* if fields are not filled */
         if ($first_name == "" || $last_name == "" || $age == "" || $email == "") {
@@ -86,8 +86,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // sql query for INSERT
                 $UUID = vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex(random_bytes(16)), 4));
                 // $sql = "INSERT INTO `user_info` (`id`, `first_name`, `last_name`, `email`, `age`) VALUES ('$UUID', '$first_name', '$last_name', '$email', '$age')";
-                // $sql = "INSERT INTO `user_info` (`id`, `phone_no`, `first_name`, `last_name`, `age`, `note`, `email`, `created_by`, `created_at`) VALUES ('$UUID', '$phone_no', '$first_name', '$last_name', '$age', '$note', '$email', '$created_by', current_timestamp())";
-                $sql = "INSERT INTO `user_info` (`id`, `phone_no`, `first_name`, `last_name`, `age`, `note`, `email`, `created_at`) VALUES ('$UUID', '$phone_no', '$first_name', '$last_name', '$age', '$note', '$email', current_timestamp())";
+                $sql = "INSERT INTO `user_info` (`id`, `phone_no`, `first_name`, `last_name`, `age`, `note`, `email`, `created_by`, `created_at`) VALUES ('$UUID', '$phone_no', '$first_name', '$last_name', '$age', '$note', '$email', '$created_by', current_timestamp())";
+                echo "$created_by";
+                // $sql = "INSERT INTO `user_info` (`id`, `phone_no`, `first_name`, `last_name`, `age`, `note`, `email`, `created_at`, `created_by`) VALUES ('$UUID', '$phone_no', '$first_name', '$last_name', '$age', '$note', '$email', current_timestamp(), 'ffghgvvhj')";
 
 
                 $result = mysqli_query($conn, $sql);
@@ -117,6 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js" integrity="sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" type="text/css" href="css/datatables.min.css" />
     <title>Contact Form Project - <?php echo $_SESSION['username'] ?></title>
 </head>
@@ -179,7 +181,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <?php
                             $idc = $_COOKIE['user_id'];
                             // echo $idc;
-                            $sql = "SELECT * FROM `user_info`";
+                            $sql = "SELECT * FROM `user_info` WHERE `created_by` = '$idc'";
                             // $sql = "SELECT * FROM `user_info` WHERE `id` = '$idc' ";
                             // echo $sql;
                             $result = mysqli_query($conn, $sql);

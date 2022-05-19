@@ -19,11 +19,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($username == "" || $password == "" || $cpassword == "") {
       $showError =  "Please fill require fields!";
-    } elseif (strlen($password) != 8) {
+    } elseif (strlen($password) < 8) {
       $showError = "Password should be of minimum 8 characters";
     } else {
       if (($password == $cpassword)) {
         $UUID = vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex(random_bytes(16)), 4));
+        $password = md5($password);
         $sql = "INSERT INTO `users` (`id`, `username`, `password`) VALUES ('$UUID','$username', '$password')";
         $result = mysqli_query($conn, $sql);
         if ($result) {

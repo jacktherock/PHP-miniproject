@@ -34,7 +34,7 @@
         } else {
 
             /* Create 'user_info' table in 'register_php' db */
-            $sql = "CREATE TABLE `register_php`.`user_info` ( `id` VARCHAR(51) NOT NULL , `phone_no` VARCHAR(14) NOT NULL , `first_name` VARCHAR(23) NOT NULL , `last_name` VARCHAR(23) NOT NULL , `age` INT(3) NOT NULL , `note` TEXT NULL , `email` VARCHAR(151) NOT NULL , `created_by` VARCHAR(51) NOT NULL , `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP )";
+            $sql = "CREATE TABLE `register_php`.`user_info` ( `id` VARCHAR(51) NOT NULL , `phone_no` VARCHAR(14) NOT NULL , `first_name` VARCHAR(23) NOT NULL , `last_name` VARCHAR(23) NOT NULL , `age` INT(3) NOT NULL , `note` TEXT NULL , `email` VARCHAR(151) NOT NULL , `created_by` VARCHAR(60) NOT NULL , `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP )";
             $result = mysqli_query($conn, $sql);
 
             /* Check for the table creation success */
@@ -45,7 +45,7 @@
             }
 
             /* Create 'users' table in 'register_php' db */
-            $sql2 = "CREATE TABLE `register_php`.`users` ( `id` VARCHAR(51) NOT NULL , `username` VARCHAR(23) NOT NULL ,  `password` VARCHAR(23) NOT NULL ,  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (`id`), UNIQUE `username` (`username`))";
+            $sql2 = "CREATE TABLE `register_php`.`users` ( `id` VARCHAR(60) NOT NULL , `username` VARCHAR(23) NOT NULL ,  `password` VARCHAR(60) NOT NULL ,  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (`id`), UNIQUE `username` (`username`))";
             $result2 = mysqli_query($conn, $sql2);
 
             /* Check for the table creation success */
@@ -53,6 +53,21 @@
                 echo '<div class="my-5 alert alert-tag shadow text-center" role="alert"> <strong>Success!</strong> users table created successfully! </div>';
             } else {
                 echo '<div class="my-5 alert alert-error shadow text-center" role="alert"> <strong>Error!</strong> Unable to create table! </div>' . mysqli_error($conn);
+            }
+
+            $sql3 = "ALTER TABLE user_info
+                    ADD CONSTRAINT fk_user_info_1
+                    FOREIGN KEY (created_by)
+                    REFERENCES users(id)
+                    ON DELETE CASCADE
+                    ON UPDATE CASCADE;";
+            $result3 = mysqli_query($conn, $sql3);
+
+            /* Check for the table creation success */
+            if ($result3) {
+                echo '<div class="my-5 alert alert-tag shadow text-center" role="alert"> <strong>Success!</strong> user_info table altered successfully! </div>';
+            } else {
+                echo '<div class="my-5 alert alert-error shadow text-center" role="alert"> <strong>Error!</strong> Unable to alter table! </div>' . mysqli_error($conn);
             }
         }
         ?>
