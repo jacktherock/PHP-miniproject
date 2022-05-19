@@ -180,10 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <!------------ Display all contacts in table format ------------>
                             <?php
                             $idc = $_COOKIE['user_id'];
-                            // echo $idc;
                             $sql = "SELECT * FROM `user_info` WHERE `created_by` = '$idc'";
-                            // $sql = "SELECT * FROM `user_info` WHERE `id` = '$idc' ";
-                            // echo $sql;
                             $result = mysqli_query($conn, $sql);
                             $num = mysqli_num_rows($result);
 

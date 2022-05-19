@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = mysqli_query($conn, $sql);
         if ($result) {
           $showAlert = "Your account is now created & You can login";
-          // header("location: login.php");
+          header("location: login.php");
         }
       } else {
         $showError = "Passwords do not match!";
