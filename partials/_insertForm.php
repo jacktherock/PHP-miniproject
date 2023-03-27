@@ -17,7 +17,7 @@
     </div>
     <div class="mb-3 d-flex flex-row tag form-group">
         <label class="form-label my-auto">Note</label>
-        <input type="text" class="form-control" name="note" id="note">
+        <textarea type="text" class="form-control" name="note" id="note"></textarea>
     </div>
     <div class="mb-3 d-flex flex-row tag form-group">
         <label class="form-label my-auto">Email</label>

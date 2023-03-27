@@ -12,7 +12,7 @@ echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand d-flex" href="/php-projects/PHP-miniProject/index.php">
         <img src="img/logo.png" alt="" width="30" height="29" class="mx-5 d-inline-block my-auto">
         <div class="fs-3">
-            <strong> Contact Form</strong>
+            <strong>Contact Form</strong>
             <small class="fs-6">using php</small>
         </div> 
     </a>
@@ -20,7 +20,7 @@ echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <div class="d-flex">';
+      <div class="d-flex ms-auto">';
           if (!$loggedin) {
             echo '<li class="nav-item">
             <a class="btn btn-outline-warning" href="/php-projects/PHP-miniProject/login.php">Login</a>
